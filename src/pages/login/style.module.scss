@@ -1,0 +1,30 @@
+.login{
+  width: 514px;
+  margin: auto;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 50px;
+  border: 1px solid #111;
+  margin: 40px auto;
+}
+.login__title{
+  font-size: 24px;
+  text-align: left;
+}
+.login__input{
+  height: 55px;
+  border-bottom: 1px solid #888;
+  color: #888;
+}
+.login_to-login{
+  height: 55px;
+  background-color: #888;
+  font-size: 16px;
+  color: #fff;
+  border-radius: 4px;
+}
+.login__error{
+  color:#F00
+}

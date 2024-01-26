@@ -1,0 +1,100 @@
+@import "../../sass/mixins.scss";
+@import "../../sass/variables.scss";
+
+.sections{
+    display: flex;
+    gap: 24px;
+    width: max-content;
+    margin: 0 auto;
+    background-color: #fff;
+}
+.sections__element{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    >img{
+        border-radius: 100px;
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+    }
+    >span{
+        margin-top: 18px;
+        text-align: center;
+        font-size: 14px;
+    }
+}
+.sections__element--main{
+   >span{
+    font-weight: 700;
+   }
+}
+
+
+
+img.sections__main_img{
+    // width: 80px;
+    // height: 80px;
+    // border-radius: 100px;
+    // background-color: #D9D9D9;
+    object-fit: contain;
+    border: 1px solid #ddd;
+}
+
+
+
+
+
+
+
+
+@media (min-width: ($breakpoint-lg+1px)) {
+    
+}
+@media (max-width: $breakpoint-lg) {
+    
+}
+@media (max-width: $breakpoint-md) {
+
+}
+@media (max-width: $breakpoint-sm) {
+    
+}
+@media (max-width: $breakpoint-xsm) {
+    .sections{
+        flex-direction: column;
+        padding: 0 17px;
+        margin: 0;
+        width: 100%;
+        grid-column: 1/-1;
+        grid-row: 1/-1;
+        height: 100vh;
+    }
+    .sections__element{
+        flex-direction: row;
+        align-items: center;
+        >img{
+            width: 40px;
+            height: 40px;
+        }
+        >span{
+            margin: 0 0 0 17px;
+        }
+    }
+}
+// @media (min-width: ($breakpoint-lg+1px)) {
+    
+// }
+// @media (max-width: $breakpoint-lg) {
+    
+// }
+// @media (max-width: $breakpoint-md) {
+
+// }
+// @media (max-width: $breakpoint-sm) {
+
+// }
+// @media (max-width: $breakpoint-xsm) {
+    
+// }

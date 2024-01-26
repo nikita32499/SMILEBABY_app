@@ -1,0 +1,98 @@
+.sections{
+
+}
+.sections__list{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+.sections__list-box{
+    display: flex;
+    flex-direction: column;
+    max-width: 160px;
+    >img{
+        width: 160px;
+        height: 160px;
+        object-fit:cover;
+        border-radius: 1000px;
+    }
+    >button{
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #aaa;
+    }
+}
+
+
+
+.update{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    >button{
+        padding: 5px 10px;
+        background-color: #aaa;
+    }
+    >input{
+        border: 1px solid #333;
+        padding: 5px;
+    }
+}
+.update__popup{
+    position: fixed;
+    display: flex;
+    top: 0px;
+    left:0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.7);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    >img{
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 1000px;
+    }
+    >button{
+        color: #fff;
+    }
+}
+
+
+
+.create{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    margin: 50px auto;
+    gap: 30px;
+}
+.create__preview{
+    display: flex;
+    flex-direction: column;
+    >img{
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 1000px;
+    }
+    >input{
+        background-color: #ccc;
+        padding: 20px 0;
+    }
+}
+
+.create__button{
+    background-color: #ccc;
+    padding: 20px 0;
+}
+.sections__delete-comfirm{
+    height: 30px;
+}
+
+
+
+

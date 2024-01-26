@@ -1,0 +1,154 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+
+.shop{
+    padding: 38px 0 69px;
+    
+}
+.shop__title_box{
+    margin-top: 36px;
+    >h2{
+        font-size: 28px;
+        font-weight: 800;
+    }
+}
+
+.shop__cardlist{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-auto-rows: 1fr;
+    gap: 20px 10px;
+}
+
+
+
+
+.shop__notfound_item{
+    grid-column: 1/-1;
+    text-align: center;
+    margin: 50px 0;
+    font-size: 20px;
+}
+
+
+
+
+
+// панель переключения страниц
+
+.shop__pagepanel{
+    width: max-content;
+    grid-template-columns: 1fr max-content 1fr;
+    display: grid;
+    margin-top: 62px;
+    height: 54px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+}
+.shop__pagepanel_page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 36px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.shop__pagepanel_page--active{
+    background: #e9e9e9;
+}
+.shop__pagepanel_buttonmove{
+    margin: 0 10px;
+    display: flex;
+    >img{
+        margin:0 9px;
+    }
+}
+div.shop__list--active{
+    display: block;
+    z-index: 10000;
+}
+
+
+.shop__pagepanel_hidden{
+    display: none;
+}
+.shop__pagepanel_buttonbox{
+    display: flex;
+}
+.shop__mobile_box{
+    display: none;
+}
+
+@media (min-width: ($breakpoint-lg+1px)) {
+    
+}
+@media (max-width: $breakpoint-lg) {
+    
+}
+@media (max-width: $breakpoint-md) {
+
+}
+@media (max-width: $breakpoint-sm) {
+
+}
+@media (max-width: $breakpoint-xsm) {
+    .shop{
+        padding: 17px 0 0;
+        display: grid;
+    }
+    .shop__list{
+        z-index: 10;
+        grid-column: 1/-1;
+        grid-row: 1/-1;
+        background-color: #fff;
+        display: none;
+        
+    }
+    .shop__title_box{
+        padding: 0 17px;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        >h2{
+            display: none;;
+        }
+    }
+    .shop__back_to_sections{
+        display: flex;
+        align-items: center;
+        >div{
+            margin-left: 17px;
+            >h2{
+                font-size: 16px;
+                text-align: left;
+            }
+            >p{
+                color: #888;
+                font-size: 13px;
+            }
+        }
+    }
+    .shop__cardlist{
+        grid-template-columns: repeat(2,1fr);
+        gap: 20px 2px;
+    }
+    .shop__pagepanel{
+        margin: auto;
+    }
+    .shop__pagepanel_buttonmove{
+        >p{
+            display: none;
+        }
+    }
+    .shop__pagepanel_hidden{
+        display: block;
+        
+    }
+    .shop__mobile_box{
+        display: block;
+    }
+}

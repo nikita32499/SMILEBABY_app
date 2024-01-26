@@ -1,0 +1,431 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+
+.filter{
+    margin: 10px 0;
+    display: flex;
+    gap: 10px;
+}
+div.filter--active{
+    display: flex
+}
+
+//фильтр с переключением
+.filter__toggle{
+    width: max-content;
+    min-width: 284px;
+    border-radius: 4px;
+    background: #FFF;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
+    padding: 21px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}
+
+
+.filter__toggle_element{
+    display: flex;
+    align-items: center;
+    gap:12px;
+    >div{
+        display: flex;
+        border-radius: 100px;
+        height: 24px;
+        width: 24px;
+        border: 1px solid #000;
+        padding: 5px;
+        >div{
+            display: none;
+            background-color: #000;
+            width: 100%;
+            height: 100%;
+            border-radius: 100px;
+            
+        }
+    }
+    >p{
+        font-size: 15px;
+    }
+}
+.filter__toggle_element--active{
+    >div{
+        >div{
+            display: block;
+        
+        }
+    }
+}
+
+
+
+
+
+
+// фильтр с галочками
+
+.filter__option{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-radius: 4px;
+    background: #FFF;
+    width: max-content;
+    min-width: 284px;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
+    padding: 21px 21px 17px;
+
+}
+.filter__option_element{
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    align-items: center;
+    >div{
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+        >img{
+            display: none;
+        }
+    }
+}
+.filter__option_p1{
+    font-size: 15px;
+    margin-left: 9px;
+}
+.filter__option_p2{
+    font-size: 13px;
+    color:#888888;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//фильтр цены
+.filter__price{
+    min-width: 388px;
+    width: max-content;
+    border-radius: 4px;
+    background: #FFF;
+    padding: 20px 12px;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
+}
+
+.filter__price_int{
+    display: grid;
+    grid-template-columns: auto 65px auto;
+}
+.filter__price_intbox{
+    display: flex;
+    flex-direction: column;
+    >input{
+        border-bottom: 2px solid #595959;
+        font-size: 15px;
+        font-weight: 700;
+        padding-bottom: 4px;
+        margin-top: 24px;
+    }
+    >p{
+        font-size: 13px;
+    }
+}
+.filter__price_int_line{
+    height: 1px;
+    width: 21px;
+    background-color: #000;
+    align-self: center;
+    justify-self: center;
+}
+.filter__price_polzynok_box{
+    position: relative;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.filter__price_line{
+    position: absolute;
+    background: #888;
+    height: 6px;
+    right: 0px;
+    left: 0px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    >div{
+        width: 23px;
+        height: 23px;
+        border-radius: 50px;
+        background: #FFF;
+        box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.20), 0px 2px 1px 0px rgba(0, 0, 0, 0.12), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    }
+}
+
+
+.filter__price_apply_button{
+    margin-top: 19px;
+    border-top: 1px solid #BFBFBF;
+    padding: 18px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 184px;
+    height: 100%;
+    height: 44px;
+    background-color: #000;
+    color:#fff;
+    font-size: 14px;
+    font-weight: 300;
+    border-radius: 4px;
+    
+    
+}
+
+.filter__price_mobile{
+    display: none;
+}
+.filter__price_mobile_inputbox{
+    display: flex;
+    border-bottom: 1px solid #D9D9D9;
+    padding-bottom: 16px;
+    transform: translateX(-17px);
+    width: 100vw;
+    >div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        >p{
+            margin-right: 9px;
+        }
+        >input{
+            border: 1px solid #888;
+            background: #FFF;
+            width: 109px;
+            height: 32px;
+        }
+    }
+}
+.filter__price_mobile_price_el{
+    height: 48px;
+    border-bottom: 1px solid #D9D9D9;
+    text-align: left;
+}
+// кнопка фильтра
+.filter__button{
+    position: relative;
+    height: 35px;
+    width: max-content;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #E5E5E5;
+    padding: 11px 9px;
+    background: #FFF;
+    display: flex;
+    align-items: center;
+    >img{
+        width: 12px;
+        margin-left: 7px;
+    }
+}
+.filter__button--active{
+    background-color: #000;
+    border: none;
+    color: #fff;
+}
+.filter__button_filter_text{
+    color: #888;
+    font-size: 16px;
+    font-weight: 300;
+    margin-left: 10px;
+}
+.filter__button_fixed_box{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    transform: translateY(calc(100% + 5px));
+    z-index: 20;
+}
+.filter__button_fixed_box_reset{
+    display: none;
+    font-size: 11px;
+    color:rgb(39, 150, 255);
+    margin-left: auto;
+    margin-right: 17px;
+}
+.filter__mobile_toggle{
+    display: none;
+    >p{
+        margin-left: 13px;
+    }
+}
+
+.filter__mobile_button_set{
+    display: none;
+    
+    
+}
+.filter__mobile_button{
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0;
+}
+.filter__mobile_button_reset{
+    
+    background: #E5E5E5;
+    color: #888;
+}
+.filter__mobile_button_reset--active{
+    border: 1px solid #000;
+    background: #FFF;
+    color:#000;
+}
+.filter__mobile_button_show{
+    background: #000;
+    color:#fff;
+}
+@media (min-width: ($breakpoint-lg+1px)) {
+    
+}
+@media (max-width: $breakpoint-lg) {
+    
+}
+@media (max-width: $breakpoint-md) {
+
+}
+@media (max-width: $breakpoint-sm) {
+
+}
+@media (max-width: $breakpoint-xsm) {
+    .filter__mobile_toggle{
+        display: flex;
+    }
+    .filter__layer{
+        display: none;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.90);
+        z-index: 10;
+        height: 100%;
+    }
+    .filter{
+        position: absolute;
+        background-color: #fff;
+        margin: 0;
+        height: calc(100vh - 120px);
+        flex-direction: column;
+        gap: 0;
+        bottom: 0px;
+        width: 100%;
+        border-top-right-radius: 16px;
+        border-top-left-radius: 16px;
+        padding-top: 60px;
+        overflow: hidden;
+    }
+    .filter__button{
+        border: none;
+        border-bottom: 1px solid #D9D9D9;
+        border-radius: 0;
+        width: auto;
+        margin: 0 0 0 17px;
+        padding: 16px 0;
+        height: max-content;
+        position: initial;
+        
+        
+    }
+    .filter__mobile_button_set{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        background: #FFF;
+        box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.16);
+        padding: 15px 17px;
+        margin-top: auto;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+    }
+    .filter__option{
+        padding: 25px 17px 0;
+        width: 100vw;
+        height: 100%;
+        gap: 0;
+    }
+    .filter__button_fixed_box{
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        height: 100%;
+        z-index: 20;
+        transform: none;
+        width: 100%;
+    }
+    .filter__toggle{
+        width: 100vw;
+        height: 100%;
+        gap: 0;
+    }
+    .filter__toggle_element{
+        padding: 17px 0;
+        border-bottom: 1px solid #D9D9D9;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+    .filter__button{
+        >img{
+            display: none;
+        }
+    }
+    .filter__button_fixed_box_reset{
+        display: block;
+    }
+    .filter__button--active{
+        background-color: #0000;
+        color: #000;
+    }
+    .filter__price{
+        display: none;
+    }
+    .filter__price_mobile{
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: 100%;
+        background-color: #fff;
+        padding: 25px 17px 0;
+    }
+    .filter__option_element{
+        height: 47px;
+        border-bottom: 1px solid #D9D9D9;
+        >div{
+            order:3;
+        }
+    }
+    .filter__option_p2{
+        justify-self: flex-end;
+        margin-right: 20px;
+    }
+}

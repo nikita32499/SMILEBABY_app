@@ -1,0 +1,73 @@
+@import "../../../sass/variables.scss";
+@import "../../../sass/mixins.scss";
+
+
+.checkout{
+    display: flex;
+    margin: 27px 0;
+}
+.checkout__form{
+    display: flex;
+    flex-direction: column;
+}
+.checkout__form_tocart{
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    >p{
+        font-size: 16px;
+    }
+}
+.checkout__form_title{
+    font-size: 40px;
+    margin-top: 29px;
+}
+.checkout__form_p1{
+    font-size: 20px;
+    margin-top: 12px;
+    max-width: 570px;
+}
+.checkout__form_inputbox{
+    display: flex;
+    flex-direction: column;
+    margin-top: 13px;
+    >input{
+        padding: 20px 0;
+        border-bottom: 1px solid #888888;
+        font-size: 16px;
+    }
+}
+
+
+
+
+
+
+
+
+.checkout__order{
+    display: grid;
+    grid-template-columns: repeat(2,max-content);
+}
+.checkout__order_title{
+    grid-column: 1/3;
+}
+.checkout__order_imgbox{
+    display: flex;
+}
+@media (min-width: ($breakpoint-lg+1px)) {
+    
+}
+@media (max-width: $breakpoint-lg) {
+    
+}
+@media (max-width: $breakpoint-md) {
+
+}
+@media (max-width: $breakpoint-sm) {
+
+}
+@media (max-width: $breakpoint-xsm) {
+   
+    
+}

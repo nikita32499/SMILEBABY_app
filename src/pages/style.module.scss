@@ -1,0 +1,27 @@
+.home{
+  padding: 38px 0 100px;
+  display: flex;
+  flex-direction: column;
+}
+.home__welcome_box{
+  display: flex;
+  flex-direction: column;
+  padding-top: 71px;
+  margin: 0 auto;
+  >*{
+    max-width: 963px;
+  }
+  >h1{
+    font-weight: 500;
+    font-size: 22px;
+  }
+
+  >h2{
+    margin-top: 33px;
+    font-size: 22px;
+  }
+  >h3{
+    margin-top: 33px;
+    font-size: 22px;
+  }
+}

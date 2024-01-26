@@ -1,0 +1,39 @@
+@import "../../../sass/variables.scss";
+@import "../../../sass/mixins.scss";
+
+
+
+.admin{
+    display: grid;
+    grid-template-columns: max-content auto;
+    grid-template-rows: auto;
+}
+.admin__panel{
+    grid-column: 1/2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    width: 200px;
+    >a{
+        height: 60px;
+        border: 1px solid #222;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 20px;
+        width: 100%;
+        transition-duration: 0.5s;
+    }
+    >a:hover{
+        background-color: #aaa;
+        // color: #fff;
+        // border:3px solid #000;
+        box-shadow: 0 2px 8px #0004;
+    }
+
+}
+.admin__box{
+    grid-column: 2/3;
+}
