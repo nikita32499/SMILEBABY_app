@@ -51,6 +51,7 @@ p{
     flex-direction: column;
 	overflow-x: hidden;
 	width: 100vw;
+	min-height: 100vh;
 }
 
 main{
@@ -62,4 +63,5 @@ main{
 body, html {
     margin: 0;
     padding: 0;
+	overflow-x: hidden;
 }

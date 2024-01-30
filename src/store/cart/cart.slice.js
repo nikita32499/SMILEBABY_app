@@ -1,23 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loadState,saveState } from "../../utils/localStorage.utils";
 import {store} from "../store"
-
+import {ItemsApi} from "../api/items.api"
 
 const initialState = {
     cart_list:[],//{count:int,item:TypeItem}
-
+    sections:[],
+    total:{
+        totalPrice:null,
+        totalCount:null,
+        totalDiscount:null
+    }
 }
 
 export const CartSlice=createSlice({
     name:"cart",
     initialState: loadState("cart") || initialState, //loadState({reduxStateName:"cart"})
     reducers:{
+        setTotal:(state,action)=>{
+            state.total={
+                ...state.total,
+                ...action.payload
+            }
+        },
+        setSections:(state,action)=>{
+            state.sections=action.payload || [...state.sections]
+        },
         addManyItemsToCart:(state,action)=>{
             let cart_list = [...state.cart_list]
-            
+
+            console.log(ItemsApi.endpoints.getAll.select()(action.rootState))
+
             if(Object.getPrototypeOf(action.payload).constructor === Object){
                 action.payload=[action.payload]
             }
+            
 
             for(let new_cart_element of action.payload){
 
