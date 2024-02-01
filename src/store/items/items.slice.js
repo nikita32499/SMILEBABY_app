@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { ItemsApi } from "../api/items.api";
 
 export const initialState={
     meta:{
@@ -30,9 +30,6 @@ export const ItemsSlice = createSlice({
                 if(action.payload.price?.min)action.payload.price.min=Math.floor(action.payload.price.min)
                 if(action.payload.price?.max)action.payload.price.max=Math.floor(action.payload.price.max)
 
-                // if(action.payload.price?.max<action.payload.price?.min){
-
-                // }
 
                 state.filter={
                     ...state.filter,
@@ -48,6 +45,16 @@ export const ItemsSlice = createSlice({
                 ...action.payload
             }
         }
+    },
+    extraReducers:(builder)=>{
+        builder.addMatcher(ItemsApi.endpoints.getAll.matchFulfilled,(state,action)=>{
+            state.meta={
+                ...state.meta,
+                maxprice:action.payload.reduce((max,{price})=>max<price?price:max, 0),
+                minprice:action.payload.reduce((min,{price})=>min>price?price:min, action.payload?.[0].price || 0)
+            }
+            
+        })
     }
 })
 

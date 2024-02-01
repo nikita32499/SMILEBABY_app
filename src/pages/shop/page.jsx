@@ -126,7 +126,7 @@ export const Shop=()=>{
                         </div>
                         <h2>{section.name}</h2>
                         
-                        <Filter items_list={items_list}/>
+                        {ItemList.length?<Filter items_list={items_list}/>:""}
                     </div>
                     <div className={style.shop__cardlist}>
                         {ItemList.length?ItemList.slice((page-1)*max_view,page*max_view).map((item,index)=>(

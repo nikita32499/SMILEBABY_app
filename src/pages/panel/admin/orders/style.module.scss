@@ -1,0 +1,52 @@
+@import "../../../../sass/variables.scss";
+@import "../../../../sass/mixins.scss";
+
+
+.order__list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+.order__box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+.order__user_productlist{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.order__user_info,.order__user_product{
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.order__user_product{
+    border: 1px solid #777;
+    padding: 10px;
+}
+
+
+
+
+@media (min-width: ($breakpoint-lg+1px)) {
+    
+}
+@media (max-width: $breakpoint-lg) {
+    
+}
+@media (max-width: $breakpoint-md) {
+
+}
+@media (max-width: $breakpoint-sm) {
+
+}
+@media (max-width: $breakpoint-xsm) {
+    
+
+}

@@ -20,6 +20,11 @@
         font-size: 16px;
     }
 }
+.checkout__form_error{
+    color:#f00;
+    font-size: 14px;
+    margin-top: 8px;
+}
 .checkout__form_title{
     font-size: 40px;
     margin-top: 29px;
@@ -140,6 +145,20 @@
 
 }
 @media (max-width: $breakpoint-xsm) {
-   
+    .checkout{
+        padding: 0 17px;
+        flex-direction: column;
+    }
+    .checkout__form_title{
+        font-size: 24px;
+    }
+    .checkout__form_p1{
+        font-size: 14px;
+        margin-top: 24px;
+        width: 100%;
+    }
+    .checkout__order{
+        margin: 40px 0;
+    }
     
 }

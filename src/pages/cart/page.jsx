@@ -14,13 +14,27 @@ const Context = createContext()
 
 
 
-const CartList=({cart_list,sections})=>{
+const CartList=()=>{
     let context = useContext(Context)
+
+    let items_list = context.items_list
+    let cart_list = context.cart_list
 
     let {setSelectManyItems,ChangeCountItemFromCart} = useActions()
 
-    console.log("time",context.time)
+    let sections=cart_list.reduce((sections,cart_element)=>{
+        let item = items_list.find(item=>item.id===cart_element.item_id)
 
+        if(!item) return sections
+        let section = sections.find(section=>section.id===item.section_id)
+        if(section){
+            section.items.push({cart_element,item})
+            return sections
+        }else{
+            return [...sections,{id:item.section_id,name:item.section,items:[{cart_element,item}]}]
+        }
+
+    },[]).sort((a,b)=>b.id-a.id)
     
 
     return(
@@ -79,20 +93,21 @@ const PriceBox=()=>{
     let context = useContext(Context)
 
     
+    let {totalPrice,totalCount,totalDiscount} = useSelector(state=>state.cart.total)
 
     return(
-        context.totalCount>0?<div className={style.cart__pricebox}>
+        totalCount>0?<div className={style.cart__pricebox}>
             <h2 className={style.cart__pricebox_title}>Сумма заказа</h2>
-            <p>{text_util.Tovar(context.totalCount)} на сумму</p><p>{context.totalPrice} ₽</p>
-            {context.totalDiscount>0?<>
-                <p>Скидка</p><p className={style.cart__price_discount}>{context.totalDiscount} ₽</p>
+            <p>{text_util.Tovar(totalCount)} на сумму</p><p>{totalPrice} ₽</p>
+            {totalDiscount>0?<>
+                <p>Скидка</p><p className={style.cart__price_discount}>{totalDiscount} ₽</p>
             </>:""}
-            <p className={style.cart__pricebox_total}>Итого</p><p  className={style.cart__pricebox_total}>{context.totalPrice} ₽</p>
-            <Link to={"/cart/checkout"} className={style.cart__pricebox_link+" "+(context.totalCount===0?style["cart__pricebox_link--disable"]:"")} onClick={(event)=>{
-                if(context.totalCount===0) return event.preventDefault()
+            <p className={style.cart__pricebox_total}>Итого</p><p  className={style.cart__pricebox_total}>{totalPrice} ₽</p>
+            <Link to={"/cart/checkout"} className={style.cart__pricebox_link+" "+(totalCount===0?style["cart__pricebox_link--disable"]:"")} onClick={(event)=>{
+                if(totalCount===0) return event.preventDefault()
             }}>
                 <p>Перейти к оформлению</p>
-                <p>{text_util.Tovar(context.totalCount)}</p>
+                <p>{text_util.Tovar(totalCount)}</p>
             </Link>
         </div>:""
     )
@@ -109,39 +124,19 @@ export const Cart=()=>{
 
     let {data:items_list=[],isLoading,isError,error} = ItemsApi.useGetAllQuery()
 
-    let sections=cart_list.reduce((sections,cart_element)=>{
-        let item = items_list.find(item=>item.id===cart_element.item_id)
-
-        if(!item) return sections
-        let section = sections.find(section=>section.id===item.section_id)
-        if(section){
-            section.items.push({cart_element,item})
-            return sections
-        }else{
-            return [...sections,{id:item.section_id,name:item.section,items:[{cart_element,item}]}]
-        }
-
-    },[]).sort((a,b)=>b.id-a.id)
-
-
-
-    let totalPrice=sections.reduce((price,{items})=>price+items.reduce((price,{item,cart_element})=>cart_element.select?price+cart_element.count * (item.price):price,0),0)
-
-    let totalCount=sections.reduce((count,{items})=>count+items.reduce((count,{item,cart_element})=>cart_element.select?count+cart_element.count:count,0),0)
-
-    let totalDiscount = sections.reduce((discount,{items})=>discount+items.reduce((discount,{item,cart_element})=>cart_element.select?discount+cart_element.count *(item.discount):discount,0),0)
+    
 
     return(
-        <Context.Provider value={{state,setState,totalPrice,totalCount,totalDiscount}}>
+        <Context.Provider value={{state,setState,items_list,cart_list}}>
             {isLoading?<div>
                 Загрузка...
             </div>:isError?<div>
                 {console.error(error)}
                 Ошибка
             </div>:<div className={style.cart}>
-                <CartList cart_list={cart_list} sections={sections}/>
+                <CartList/>
                 <PriceBox/>
-                {totalCount===0?<p className={style.cart__emptycart}>У вас пустая корзина</p>:""}
+                {!cart_list.length?<p className={style.cart__emptycart}>У вас пустая корзина</p>:""}
             </div>}
         </Context.Provider>
         

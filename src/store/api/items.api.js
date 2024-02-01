@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { store } from '../store'
 import { actions } from '../items/items.slice'
 
-const REACT_BASE_API_URL=  "http://127.0.0.1/api/smilebaby"
+const REACT_BASE_API_URL=  `${window.location.origin}/api/smilebaby`
 
 
 
@@ -16,13 +16,7 @@ export const ItemsApi = createApi({
         getAll:builder.query({
             query: () => `/items/getAll`,
             providesTags:()=>[{type:"Items",id:"LIST"}],
-            transformResponse:(data)=>{
-                store.dispatch(actions.setMetadata({
-                    maxprice:data.result.reduce((max,{price})=>max<price?price:max, 0),
-                    minprice:data.result.reduce((min,{price})=>min>price?price:min, data.result?.[0].price || 0)
-                }))
-                return data.result
-            }
+            transformResponse:(data)=>data.result
         }),
         create:builder.mutation({
             query: (items) => ({

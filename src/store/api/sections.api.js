@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-
-const REACT_BASE_API_URL=  "http://127.0.0.1/api/smilebaby"
+const REACT_BASE_API_URL=  `${window.location.origin}/api/smilebaby`
 
 export const SectionsApi = createApi({
     reducerPath:"SectionsApi",

@@ -7,6 +7,9 @@ import { AdminPanel } from "./page";
 
 import { Sections } from "./sections/page";
 import { Items } from "./items/page";
+import { Orders } from "./orders/page";
+
+
 
 export const AdminRouter=()=>{
     const [cookies, removeCookie] = useCookies();
@@ -21,9 +24,10 @@ export const AdminRouter=()=>{
         <Routes>
             
             <Route element={<AdminLayout/>}>
-                <Route index element={<p>dsfsdfsdf</p>}/>
+                <Route index element={<p>Выбери что открыть</p>}/>
                 <Route path="sections" element={<Sections/>} />
                 <Route path="items" element={<Items/>} />
+                <Route path="orders" element={<Orders/>}/>
                 <Route path="*" element={<Navigate to="." replace/>} />
             </Route>
         </Routes>

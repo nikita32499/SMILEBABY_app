@@ -1,12 +1,14 @@
 import style from "./style.module.scss"
-import { Link, Navigate } from "react-router-dom"
+import { Link, Navigate,useNavigate } from "react-router-dom"
 import { useForm } from "../../../hooks/useForm"
 import { useSelector } from "react-redux"
 import { ItemsApi } from "../../../store/api/items.api"
 import {Tovar} from "../../../utils/text.utils"
 import { store } from "../../../store/store"
-
-
+import { CartSlice } from "../../../store/cart/cart.slice"
+import { Cart } from "../page"
+import { OrderApi } from "../../../store/api/order.api"
+import { useEffect } from "react"
 const fields={
     name:{
         validations:[
@@ -18,7 +20,7 @@ const fields={
     phone:{
         validations:[
             value=>!value.length && "Вы забыли указать телефон",
-            value=>!value.replaceAll(" ","").match(/^\+?(7|8)d{10}$/) && "Не правильный формат номера телефона"
+            value=>!value.replaceAll(" ","").match(/^\+?(7|8)\d{10}$/) && "Не правильный формат номера телефона"
         ],
         name:"Телефон",
         placeholder:"Телефон*"
@@ -34,14 +36,39 @@ const fields={
 }
 
 
-function SendOrder(){
-    let response
-    try {
-        response=fetch
-    } catch (error) {
-        response=error.response
-    }
-}
+// async function SendOrder({phone,name,email}){
+//     let items = store.getState().cart.cart_list
+
+    // if(!items.length){
+    //     return 
+    // }
+
+//     let response
+//     try {
+//         response=await fetch(`${window.location.origin}/api/smilebaby/orders/create`,{
+//             method:"POST",
+//             headers:{
+//                 'Content-Type': 'application/json'
+//             },
+//             body:JSON.stringify({
+//                 items,
+//                 phone,
+//                 name,
+//                 email
+//             })
+//         })
+//     } catch (error) {
+//         response=error.response
+//     }
+//     if(response.status===200){
+//         let data = await response.json()
+
+//         if("result" in data){
+//             return true
+            
+//         }
+//     }
+// }
 
 
 
@@ -52,25 +79,24 @@ export const Checkout=()=>{
 
     let cart_list = useSelector(state=>state.cart.cart_list)
     
+    let {totalPrice,totalCount,totalDiscount} = useSelector(state=>state.cart.total)
 
     let {data:items_list=[],isLoading,isError,error} = ItemsApi.useGetAllQuery()
 
 
-    let items=cart_list.reduce((items,cart_element)=>{
-        let item = items_list.find(item=>cart_element.select && item.id===cart_element.item_id)
-        if(!item) return items
-        items.push({cart_element,item})
-        return items
-    },[]).sort((a,b)=>b.id-a.id)
+    cart_list=cart_list.filter(cart_element=>cart_element.select)
 
+    let [createOrder] = OrderApi.useCreateOrderMutation()
 
-    let totalPrice=items.reduce((price,{item,cart_element})=>cart_element.select?price+cart_element.count * (item.price):price,0)
+    let navigate = useNavigate()
 
-    let totalCount=items.reduce((count,{item,cart_element})=>cart_element.select?count+cart_element.count:count,0)
+    // usefect(()=>{
+    //     setTimeout(()=>{
+    //         navigate("/")
+    //     },2000)
+    // },[])Ef
 
-    let totalDiscount = items.reduce((discount,{item,cart_element})=>cart_element.select?discount+cart_element.count *(item.discount):discount,0)
-
-    if(!cart_list.find(cart_element=>cart_element.select)) return <Navigate to="/cart"/>
+    if(!cart_list.length) return <Navigate to="/cart"/>
 
 
     
@@ -78,19 +104,22 @@ export const Checkout=()=>{
 
 
     return (
+        isLoading?<div>Загрузка...</div>:isError?<div>
+            {console.error(error)}
+            Ошибка</div>:
         <div className={style.checkout}>
             <div className={style.checkout__form}>
-                <button className={style.checkout__form_tocart}>
+                <Link to="/cart" className={style.checkout__form_tocart}>
                     <img src="/img/right-arrow.svg" alt="" />
                     <p>В корзину</p>
-                </button>
+                </Link>
                 <p className={style.checkout__form_title}>Оформление заказа</p>
                 <p className={style.checkout__form_p1}>Пожалуйста заполните форму, и с вами свяжуться для оформления заказа. Спасибо выбираете нас!</p>
                 <div className={style.checkout__form_inputbox}>
                     {Object.entries(fields).map(([key,{name,placeholder}])=>(
                         <>
                             <input type="text" name={key} placeholder={placeholder} onChange={handlerChange}/>
-                            {errors[key]?<span className={style["items__update-error"]}>{errors[key]}</span>:""}
+                            {errors[key]?<p className={style.checkout__form_error}>{errors[key]}</p>:""}
                         </>
                     ))}
                 
@@ -102,19 +131,29 @@ export const Checkout=()=>{
             <div className={style.checkout__order}>
                 <p className={style.checkout__order_title}>Ваш заказ</p>
                 <div className={style.checkout__order_imgbox}>
-                    {items.map(({cart_element,item})=>(
+                    {cart_list.map((cart_element)=>(
                         <div>
-                            <img src={item.img_main} alt="" />
+                            <img src={items_list.find(item=>item.id===cart_element.item_id).img_main} alt="" />
                             {cart_element.count?<div>{cart_element.count} шт</div>:""}
                         </div>
                     ))}
                 </div>
-                <p className={style.checkout__order_p2}>{Tovar(totalCount)} на сумму</p><p className={style.checkout__order_p2}>{totalPrice}</p>
+                <p className={style.checkout__order_p2}>{Tovar(totalCount)} на сумму</p><p className={style.checkout__order_p2}>{totalPrice} ₽</p>
 
-                <p className={style.checkout__order_p3}>Итого</p><p className={style.checkout__order_p3}>{totalPrice}</p>
+                <p className={style.checkout__order_p3}>Итого</p><p className={style.checkout__order_p3}>{totalPrice} ₽</p>
 
-                <button onClick={()=>{
-
+                <button onClick={async()=>{
+                    let formData = getFormState()
+                    if(!formData) return
+                    let response = await createOrder({
+                        phone:formData.phone.value,
+                        email:formData.email.value,
+                        name:formData.name.value
+                    })
+                    if(response?.data?.result){
+                        store.dispatch(CartSlice.actions.clearCart())
+                        window.location.assign("/")
+                    }
                 }}>Оформить заказ</button>
 
                 
