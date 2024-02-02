@@ -55,11 +55,13 @@ p{
 }
 
 main{
+	display: flex;
+	flex-direction: column;
 	width: 100vw;
     max-width: 1200px;
     margin: auto;
 	flex-grow: 1;
-	z-index: 900;
+	z-index: 0;
 }
 body, html {
     margin: 0;

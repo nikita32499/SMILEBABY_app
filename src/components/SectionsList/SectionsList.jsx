@@ -3,6 +3,7 @@ import { SectionsApi } from "../../store/api/sections.api"
 import style from "./style.module.scss"
 
 import { Link } from "react-router-dom"
+import { memo } from "react"
 
 const SectionElement=({section,change})=>{
 
@@ -19,7 +20,7 @@ const SectionElement=({section,change})=>{
 
 
 
-export const SectionsList=({change})=>{
+export const SectionsList=memo(({change})=>{
 
     let {data:sections_list,isFetching,isError}=SectionsApi.useGetAllSectionsQuery()
 
@@ -43,4 +44,4 @@ export const SectionsList=({change})=>{
             ))}
         </div>)
     )
-}
+})

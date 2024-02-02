@@ -7,7 +7,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(3,max-content);
     background-color: #1C1C1E;
-    padding: 30px 0;
+    padding: 30px 17px;
     color: #888;
 }
 .footer__media{
@@ -81,8 +81,7 @@
 
 .header{
     border-bottom: 1px solid #D9D9D9;
-    z-index: 1000;
-
+    padding: 0 17px
 }
 .header__nav{
     margin: auto;
@@ -196,7 +195,9 @@
 
 
 
-
+    .header{
+        padding: 0;
+    }
 
     .header__nav{
         grid-template-columns: max-content auto max-content;

@@ -59,10 +59,15 @@ img.sections__main_img{
 
 }
 @media (max-width: $breakpoint-sm) {
-    
+    .sections{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+    }
 }
 @media (max-width: $breakpoint-xsm) {
     .sections{
+        display: flex;
         flex-direction: column;
         padding: 0 17px;
         margin: 0;

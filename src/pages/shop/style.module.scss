@@ -4,7 +4,8 @@
 
 .shop{
     padding: 38px 0 69px;
-    
+    margin: 0 auto;
+    width: 100%;
 }
 .shop__title_box{
     margin-top: 36px;
@@ -86,13 +87,28 @@ div.shop__list--active{
     
 }
 @media (max-width: $breakpoint-lg) {
-    
+    .shop__cardlist{
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .shop{
+        max-width: $breakpoint-md;
+    }
 }
 @media (max-width: $breakpoint-md) {
-
+    .shop__cardlist{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .shop{
+        max-width: $breakpoint-sm;
+    }
 }
 @media (max-width: $breakpoint-sm) {
-
+    .shop__cardlist{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .shop{
+        max-width: $breakpoint-xsm;
+    }
 }
 @media (max-width: $breakpoint-xsm) {
     .shop{
@@ -137,7 +153,7 @@ div.shop__list--active{
         gap: 20px 2px;
     }
     .shop__pagepanel{
-        margin: auto;
+        margin: 30px auto 0;
     }
     .shop__pagepanel_buttonmove{
         >p{

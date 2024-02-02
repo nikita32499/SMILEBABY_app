@@ -174,7 +174,7 @@ const Panel = ({item,items_list})=>{
                         )
                     })}
                 </div>
-                {context.state.errors.find(error=>error.name==="for first delete")?<p className={style.product__panel_error}>Сначала удалите товар чтобы изменить выбор</p>:""}
+                {context.state.errors.find(error=>error.name==="for first delete")?<p className={style.product__panel_error}>Сначала удалите товар</p>:""}
             </div>
             <div className={style.product__panel_buybox}>
                 {cart_list.find(cart_element=>cart_element.item_id===item.id)?<>

@@ -1,0 +1,51 @@
+@import "../../sass/mixins.scss";
+@import "../../sass/variables.scss";
+
+
+.notfound{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+
+    >p:nth-child(1){
+        font-size: 56px;
+        font-weight: 800;
+    }
+    >p:nth-child(2){
+        margin-top: 35px;
+        font-size: 20px;
+        font-weight: 300;
+    }
+}
+
+.notfound__tomain{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    margin-top: 45px;
+    font-weight: 300;
+    border: 1px solid #d5d5d5;
+    padding: 10px;
+    border-radius: 6px;
+    >img{
+        margin-left: 12px;
+    }
+}
+
+@media (min-width: ($breakpoint-lg+1px)) {
+    
+}
+@media (max-width: $breakpoint-lg) {
+    
+}
+@media (max-width: $breakpoint-md) {
+
+}
+@media (max-width: $breakpoint-sm) {
+    
+}
+@media (max-width: $breakpoint-xsm) {
+    
+}

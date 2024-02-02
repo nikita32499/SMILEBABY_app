@@ -13,6 +13,7 @@ div.filter--active{
 
 //фильтр с переключением
 .filter__toggle{
+    @include fadeIn(0.2s);
     width: max-content;
     min-width: 284px;
     border-radius: 4px;
@@ -67,6 +68,7 @@ div.filter--active{
 // фильтр с галочками
 
 .filter__option{
+    @include fadeIn(0.2s);
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -116,6 +118,7 @@ div.filter--active{
 
 //фильтр цены
 .filter__price{
+    @include fadeIn(0.2s);
     min-width: 388px;
     width: max-content;
     border-radius: 4px;
@@ -229,6 +232,7 @@ div.filter--active{
 }
 // кнопка фильтра
 .filter__button{
+    
     position: relative;
     height: 35px;
     width: max-content;

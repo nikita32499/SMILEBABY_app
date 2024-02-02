@@ -129,6 +129,7 @@
     text-align: center;
     }
     >button{
+        @include press();
         display: flex;
         align-items: center;
         padding: 10px;

@@ -1,0 +1,32 @@
+@import "../../sass/mixins.scss";
+@import "../../sass/variables.scss";
+
+.error{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    >p{
+        font-size: 20px;
+        font-weight: 500;
+    }
+}
+
+
+
+@media (min-width: ($breakpoint-lg+1px)) {
+    
+}
+@media (max-width: $breakpoint-lg) {
+    
+}
+@media (max-width: $breakpoint-md) {
+
+}
+@media (max-width: $breakpoint-sm) {
+    
+}
+@media (max-width: $breakpoint-xsm) {
+    
+}

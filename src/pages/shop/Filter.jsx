@@ -86,7 +86,7 @@ const PriceFilter=()=>{
             
             let deltaX = (event.screenX-startX)/(ref.price_box.current.clientWidth/(100))
 
-
+            
 
             let value
             if(side==="right"){
@@ -153,8 +153,8 @@ const PriceFilter=()=>{
             <div className={style.filter__price}>
                 <div ref={ref.price_box} className={style.filter__price_polzynok_box}>
                     <div ref={ref.price_line} className={style.filter__price_line} style={{
-                        left:`${left || 0}%`,
-                        right:`${right || 0}%`
+                        left:`${(left || 0)}%`,
+                        right:`${(right || 0)}%`
                     }}>
                         <div onMouseDown={(event)=>{MouseDown(event,"left")}}></div>
                         <div onMouseDown={(event)=>{MouseDown(event,"right")}}></div>
@@ -422,12 +422,13 @@ export const Filter=({items_list})=>{
     let [state,setState]=useState({
         action:{}
     })
-
+    
 
     let ref={
         filter__layer:useRef()
     }
-    
+
+
     return(
         <FilterContext.Provider value={{state,setState}}>
             

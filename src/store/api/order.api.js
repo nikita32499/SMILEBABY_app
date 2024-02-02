@@ -15,7 +15,13 @@ export const OrderApi = createApi({
             transformResponse:(data)=>data.result
         }),
         deleteOrder:builder.mutation({
-            query:()=>`/orders/remove`,
+            query:({id})=>({
+                url:`/orders/remove`,
+                method:"POST",
+                body:{
+                    id
+                }
+            }),
             invalidatesTags:[{type:"Order",id:"LIST"}]
         }),
         createOrder:builder.mutation({

@@ -1,6 +1,6 @@
 import { Navigate, useParams } from "react-router-dom"
 import style from "./style.module.scss"
-import { useContext, useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
 
 import { ItemsApi } from "../../store/api/items.api"
 import { SectionsApi } from "../../store/api/sections.api"
@@ -99,6 +99,13 @@ export const Shop=()=>{
         shop__cardlist:useRef()
     }
 
+
+
+
+    let setClass=useCallback((event)=>{
+        ref.shop__cardlist.current.classList.add(style["shop__list--active"])
+    },[])
+
     if(ItemList.length && ItemList.length+max_view<(page*max_view)+1){
         return <Navigate to={"?page=1"}/>
     }
@@ -108,9 +115,7 @@ export const Shop=()=>{
     return(
         <ShopContext.Provider value={{state,setState}}>
             <div className={style.shop}>
-                <SectionsList change={(event)=>{
-                    ref.shop__cardlist.current.classList.add(style["shop__list--active"])
-                }}/>
+                <SectionsList change={setClass}/>
                 <div ref={ref.shop__cardlist} className={style.shop__list+" "+(window.location.search.includes("page=")?style["shop__list--active"]:"")}>
                     <div className={style.shop__title_box}>
                         <div className={style.shop__mobile_box}>
@@ -126,7 +131,8 @@ export const Shop=()=>{
                         </div>
                         <h2>{section.name}</h2>
                         
-                        {ItemList.length?<Filter items_list={items_list}/>:""}
+                        {items_list.length?<Filter items_list={items_list}/>:""}
+                        
                     </div>
                     <div className={style.shop__cardlist}>
                         {ItemList.length?ItemList.slice((page-1)*max_view,page*max_view).map((item,index)=>(

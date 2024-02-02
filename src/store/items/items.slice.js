@@ -27,8 +27,10 @@ export const ItemsSlice = createSlice({
             if(action.payload==="default"){
                 state.filter={...initialState.filter}
             }else{
-                if(action.payload.price?.min)action.payload.price.min=Math.floor(action.payload.price.min)
-                if(action.payload.price?.max)action.payload.price.max=Math.floor(action.payload.price.max)
+                if(action.payload.price?.min) action.payload.price.min = Math.floor(Number(action.payload.price.min)) || state.filter.price.min
+                if(action.payload.price?.max) action.payload.price.max = Math.floor(Number(action.payload.price.max)) || state.filter.price.max
+                if(Number.isNaN(action.payload.price?.min)) action.payload.price.min=state.filter.price.min
+                if(Number.isNaN(action.payload.price?.max)) action.payload.price.max=state.filter.price.max
 
 
                 state.filter={

@@ -114,7 +114,7 @@ export const Checkout=()=>{
                     <p>В корзину</p>
                 </Link>
                 <p className={style.checkout__form_title}>Оформление заказа</p>
-                <p className={style.checkout__form_p1}>Пожалуйста заполните форму, и с вами свяжуться для оформления заказа. Спасибо выбираете нас!</p>
+                <p className={style.checkout__form_p1}>Пожалуйста заполните форму, и с вами свяжуться для оформления заказа. <br/><br/> Спасибо что выбираете нас!</p>
                 <div className={style.checkout__form_inputbox}>
                     {Object.entries(fields).map(([key,{name,placeholder}])=>(
                         <>
