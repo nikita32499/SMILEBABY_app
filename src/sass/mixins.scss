@@ -37,3 +37,8 @@
     }
 }
 
+@mixin outline{
+    // outline: 2px solid blue;
+    outline-offset: 5px; 
+}
+

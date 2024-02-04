@@ -1,5 +1,8 @@
 @import "./sass/variables.scss";
 @import "./sass/mixins.scss";
+
+
+
 *{
 	padding: 0;
 	margin: 0;
@@ -12,8 +15,8 @@
 	box-sizing: border-box;
 	
 }
-:focus,:active{outline: none;}
-a:focus,a:active{outline: none;}
+:focus,:active{@include outline;}
+a:focus,a:active{@include outline;}
 
 nav,footer,header,aside{display: block;}
 
@@ -34,7 +37,7 @@ input::-ms-clear{display: none;}
 button{cursor: pointer;background-color: #0000;}
 button::-moz-focus-inner {padding:0;border:0;}
 button:focus:hover:active {
-	outline: none;
+	@include outline;
 }
 a, a:visited{text-decoration: none}
 a{color:#000}
