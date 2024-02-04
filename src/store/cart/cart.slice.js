@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loadState,saveState } from "../../utils/localStorage.utils";
+import { loadState } from "../../utils/localStorage.utils";
 import {store} from "../store"
 import {ItemsApi} from "../api/items.api"
 
@@ -134,9 +134,17 @@ export const CartSlice=createSlice({
 
 
 
-export const {actions,reducer} = CartSlice
+export const {actions,reducer} = CartSlice;
 
 
-window.addEventListener('beforeunload', ()=>{
-    localStorage.setItem("cart",JSON.stringify(store.getState().cart))
-});
+const saveState = () => {
+    try {
+      alert("ddd")
+      localStorage.setItem("cart",JSON.stringify(store.getState().cart))
+    } catch (error) {
+      console.error(`Ошибка сохранения state (vart) localStorage:`, error);
+    }
+  };
+
+window.addEventListener("unload", saveState);
+window.addEventListener("beforeunload", saveState);

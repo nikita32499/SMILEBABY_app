@@ -18,21 +18,22 @@
   }
 
 
-@mixin press($duration:2s){
+@mixin press($duration:0.3s){
     @keyframes press{
         0% {
             transform: scale(1);
         }
         50% {
-            transform: scale(0.8);
-            box-shadow: inset 0 0 4px #000, 0 0 4px #000;
+            opacity: 0.7;
+            transform: scale(0.95);
         }
         100% {
             transform: scale(1);
         }
     }
-    &:hover{
+    &:active{
         animation: press $duration linear;
 
     }
 }
+

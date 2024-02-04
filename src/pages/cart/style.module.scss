@@ -87,7 +87,8 @@
     width: 100%;
     max-width: 384px;
     height: max-content;
-    animation: fadeIn 0.5s ease-out;
+    @include fadeIn(0.5s);
+    
     >p{
         font-size: 16px;
         margin-top: 9px;
@@ -153,10 +154,8 @@ p.cart__pricebox_total{
 @media (max-width: $breakpoint-md) {
 
 }
-@media (max-width: $breakpoint-sm) {
 
-}
-@media (max-width: $breakpoint-xsm) {
+@media (max-width: $breakpoint-sm) {
     .cart{
         grid-template-columns: auto;
         margin: 17px 0;
@@ -181,34 +180,27 @@ p.cart__pricebox_total{
         margin-top: 12px;
     }
     .cart__pricebox{
-        margin: 50px 0;
+        margin: 50px auto;
         width: 100%;
+        transform: translateX(-9px);
     }
     .cart__emptycart{
         margin-bottom: 50px;
     }
     
 }
+@media (max-width: $breakpoint-xsm) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-@keyframes fadeIn {
-from {
-    opacity: 0;
 }
-to {
-    opacity: 1;
-}
-}
+
+
+
+
+
+
+
+
+
+
+
+

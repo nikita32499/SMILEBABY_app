@@ -150,7 +150,17 @@
     .itemcard__info_p{
         font-size: 14px;
     }
-
+    .itemcard{
+        &:hover{
+            background: #FFF;
+            position: initial;
+            transform: initial;
+            box-shadow: initial;
+            .itemcard__button,.itemcard__sizes{
+                display: initial;
+            }
+        }
+    }
 }
 
 

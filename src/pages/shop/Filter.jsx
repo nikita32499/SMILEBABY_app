@@ -535,6 +535,9 @@ export const Filter=({items_list})=>{
                         }}>
                         <OptionFilter param_list={season_params} />
                     </ButtonFilter>
+                    {filter.modified?<button className={style.filter__button+" "+style.filter__button_reset+" "+style["filter__button--active"]} onClick={()=>{
+                        setFilter("default")
+                    }}>Сбросить фильтры</button>:""}
                     <MobileSetButtons
                         apply={()=>{
                             ref.filter__layer.current.classList.remove(style["filter--active"])

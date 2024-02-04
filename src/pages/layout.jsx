@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom"
-import { useRef, } from "react"
+import { useRef,Suspense } from "react"
 import { Link } from "react-router-dom"
 import style from "./layout.module.scss"
 import { useSelector } from "react-redux"
@@ -103,14 +103,16 @@ function Footer(){
 }
 
 
-export const Layout=()=>{
+const Layout=()=>{
     return(
         <>
             <Header/>
                 <main>
                     <Outlet/>
+                    
                 </main>
             <Footer/>
         </>
     )
-}   
+}  
+export  default Layout

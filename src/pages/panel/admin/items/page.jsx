@@ -169,7 +169,7 @@ const Update=({item})=>{
                         let dataForm = getFormState({type:"force"})
                         if(!dataForm) return
                         let data = Object.entries(dataForm).reduce((data,[key,{value}])=>{
-                            if(value){
+                            if(value!==undefined){
                                 data[key]=value
                             }
                             return data

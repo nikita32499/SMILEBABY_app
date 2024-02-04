@@ -144,10 +144,8 @@
 @media (max-width: $breakpoint-md) {
 
 }
-@media (max-width: $breakpoint-sm) {
 
-}
-@media (max-width: $breakpoint-xsm) {
+@media (max-width: $breakpoint-sm) {
     .cartelement{
         grid-template-columns: max-content auto max-content;
         grid-template-rows: repeat(3,max-content);
@@ -195,4 +193,7 @@
         }
     }
     
+}
+@media (max-width: $breakpoint-xsm) {
+
 }

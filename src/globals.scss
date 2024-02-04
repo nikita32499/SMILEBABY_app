@@ -1,4 +1,5 @@
-
+@import "./sass/variables.scss";
+@import "./sass/mixins.scss";
 *{
 	padding: 0;
 	margin: 0;
@@ -32,7 +33,9 @@ input,button,textarea{font-family:inherit;}
 input::-ms-clear{display: none;}
 button{cursor: pointer;background-color: #0000;}
 button::-moz-focus-inner {padding:0;border:0;}
-// button:focus:hover:active {}
+button:focus:hover:active {
+	outline: none;
+}
 a, a:visited{text-decoration: none}
 a{color:#000}
 a{text-decoration: none;}
@@ -41,9 +44,9 @@ ul li{list-style: none;}
 img{vertical-align: top;}
 
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
-p{
-	width: max-content;
-}
+// p{
+// 	width: max-content;
+// }
 /*--------------------*/
 
 #root{
@@ -62,9 +65,19 @@ main{
     margin: auto;
 	flex-grow: 1;
 	z-index: 0;
+	padding: 0 17px;
 }
+
 body, html {
     margin: 0;
     padding: 0;
 	overflow-x: hidden;
+}
+
+
+
+@media (max-width:$breakpoint-sm){
+	main{
+		padding: 0;
+	}
 }

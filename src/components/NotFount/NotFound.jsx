@@ -2,7 +2,7 @@ import style from "./style.module.scss"
 import { Link } from "react-router-dom"
 
 
-export const NotFound=()=>{
+const NotFound=()=>{
 
 
     return(
@@ -13,3 +13,5 @@ export const NotFound=()=>{
         </div>
     )
 }
+
+export default NotFound

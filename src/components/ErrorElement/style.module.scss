@@ -7,13 +7,19 @@
     align-items: center;
     justify-content: center;
     flex-grow: 1;
+    gap: 20px;
     >p{
         font-size: 20px;
-        font-weight: 500;
     }
 }
-
-
+p.error__title{
+    font-size: 24px;
+    font-weight: 500;
+}
+p.error__p{
+    font-size: 40px;
+    font-weight: 600;
+}
 
 @media (min-width: ($breakpoint-lg+1px)) {
     

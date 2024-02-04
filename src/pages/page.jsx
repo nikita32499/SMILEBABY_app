@@ -1,7 +1,7 @@
 import style from './style.module.scss';
 import { SectionsList } from '../components/SectionsList/SectionsList';
 
-export const Home=()=>{
+const Home=()=>{
   return (
       <div className={style.home}>
         <SectionsList/>
@@ -15,3 +15,4 @@ export const Home=()=>{
   );
 }
 
+export default Home

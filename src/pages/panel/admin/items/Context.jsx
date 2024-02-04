@@ -44,7 +44,8 @@ export const fields={
         name:"Цена",
         validations:[
             value=>!value.length && "Укажите Цену",
-            value=>isNaN(Number(value)) && "Нужно указать число"
+            value=>isNaN(Number(value)) && "Нужно указать число",
+            value=>Number(value)<=0 && "Цена должна быть больше 0"
         ],
         transform:value=>Number(value)
     },

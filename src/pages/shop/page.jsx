@@ -13,6 +13,10 @@ import { useActions } from "../../hooks/useActions"
 import { useUrlParams } from "../../hooks/useUrlParams"
 import { Link } from "react-router-dom"
 
+
+import ErrorElement from "../../components/ErrorElement/ErrorElement"
+import Loading from "../../components/Loading/Loading"
+
 const PagesPanel=({ItemList})=>{
     let max_view = 15
     let {page} = useUrlParams()
@@ -40,7 +44,7 @@ const PagesPanel=({ItemList})=>{
 
 
 
-export const Shop=()=>{
+const Shop=()=>{
 
     let [state,setState]=useState({
         action:{}
@@ -110,10 +114,11 @@ export const Shop=()=>{
         return <Navigate to={"?page=1"}/>
     }
 
-    
+    let _ItemList_=ItemList.slice((page-1)*max_view,page*max_view)
+    if(_ItemList_.length===1) _ItemList_=[_ItemList_[0],{..._ItemList_[0],shadow:true}]
 
     return(
-        <ShopContext.Provider value={{state,setState}}>
+        sections_query.isError || items_query.isError?<ErrorElement error={sections_query.error || items_query.error} message={"Не удалось загрузить информацию о товарах"}/>:sections_query.isLoading || items_query.isLoading?<Loading/>:<ShopContext.Provider value={{state,setState}}>
             <div className={style.shop}>
                 <SectionsList change={setClass}/>
                 <div ref={ref.shop__cardlist} className={style.shop__list+" "+(window.location.search.includes("page=")?style["shop__list--active"]:"")}>
@@ -135,7 +140,7 @@ export const Shop=()=>{
                         
                     </div>
                     <div className={style.shop__cardlist}>
-                        {ItemList.length?ItemList.slice((page-1)*max_view,page*max_view).map((item,index)=>(
+                        {_ItemList_.length?_ItemList_.map((item,index)=>(
                             <ItemCard item={item} key={index}/>
                         )):<div className={style.shop__notfound_item}>
                             Не один товар не найден
@@ -148,3 +153,6 @@ export const Shop=()=>{
         
     )
 }
+
+
+export default Shop

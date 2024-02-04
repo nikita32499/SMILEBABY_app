@@ -9,6 +9,11 @@ import { CartSlice } from "../../../store/cart/cart.slice"
 import { Cart } from "../page"
 import { OrderApi } from "../../../store/api/order.api"
 import { useEffect } from "react"
+
+
+import ErrorElement from "../../../components/ErrorElement/ErrorElement"
+import Loading from "../../../components/Loading/Loading"
+
 const fields={
     name:{
         validations:[
@@ -72,14 +77,14 @@ const fields={
 
 
 
-export const Checkout=()=>{
+const Checkout=()=>{
 
     let [getFormState,handlerChange,errors]=useForm(fields)
 
 
     let cart_list = useSelector(state=>state.cart.cart_list)
     
-    let {totalPrice,totalCount,totalDiscount} = useSelector(state=>state.cart.total)
+    let {totalPrice,totalCount} = useSelector(state=>state.cart.total)
 
     let {data:items_list=[],isLoading,isError,error} = ItemsApi.useGetAllQuery()
 
@@ -88,13 +93,6 @@ export const Checkout=()=>{
 
     let [createOrder] = OrderApi.useCreateOrderMutation()
 
-    let navigate = useNavigate()
-
-    // usefect(()=>{
-    //     setTimeout(()=>{
-    //         navigate("/")
-    //     },2000)
-    // },[])Ef
 
     if(!cart_list.length) return <Navigate to="/cart"/>
 
@@ -104,9 +102,7 @@ export const Checkout=()=>{
 
 
     return (
-        isLoading?<div>Загрузка...</div>:isError?<div>
-            {console.error(error)}
-            Ошибка</div>:
+        isError?<ErrorElement/>:isLoading?<Loading/>:
         <div className={style.checkout}>
             <div className={style.checkout__form}>
                 <Link to="/cart" className={style.checkout__form_tocart}>
@@ -161,3 +157,5 @@ export const Checkout=()=>{
         </div>
     )
 }
+
+export default Checkout

@@ -3,7 +3,6 @@ import { Route,Routes,Navigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 import { AdminLayout } from "./layout";
-import { AdminPanel } from "./page";
 
 import { Sections } from "./sections/page";
 import { Items } from "./items/page";
@@ -11,7 +10,7 @@ import { Orders } from "./orders/page";
 
 
 
-export const AdminRouter=()=>{
+const AdminRouter=()=>{
     const [cookies, removeCookie] = useCookies();
  
 
@@ -34,3 +33,4 @@ export const AdminRouter=()=>{
         
     )
 }
+export default AdminRouter

@@ -5,6 +5,9 @@ import { ItemsApi } from "../../store/api/items.api"
 import { Link, Navigate, useParams,useNavigate } from "react-router-dom"
 import { useActions } from "../../hooks/useActions"
 
+import ErrorElement from "../../components/ErrorElement/ErrorElement"
+import Loading from "../../components/Loading/Loading"
+
 const Context = createContext()
 
 
@@ -239,7 +242,7 @@ const Info = ({item})=>{
     )
 }
 
-export const Product=()=>{
+const Product=()=>{
 
     let [state,setState]=useState({
         action:{},
@@ -256,13 +259,9 @@ export const Product=()=>{
 
 
     return(
+        isError?<ErrorElement error={error} message={"Товар не открылся"}/>:isLoading?<Loading/>:
         <Context.Provider value={{state,setState}}>
-            {isLoading?<div>
-            Загрузка...
-            </div>:isError?<div>
-                {console.log(error)}
-                Ошибка
-            </div>:!item?<div>
+            {!item?<div>
                 Товар не найден
             </div>:<div className={style.product}>
                 <Slider item={item}/>
@@ -273,3 +272,4 @@ export const Product=()=>{
        
     )
 }
+export default Product

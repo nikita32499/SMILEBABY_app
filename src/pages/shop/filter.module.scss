@@ -6,6 +6,7 @@
     margin: 10px 0;
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 div.filter--active{
     display: flex
@@ -69,6 +70,7 @@ div.filter--active{
 
 .filter__option{
     @include fadeIn(0.2s);
+    
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -94,6 +96,7 @@ div.filter--active{
     }
 }
 .filter__option_p1{
+    width: max-content;
     font-size: 15px;
     margin-left: 9px;
 }
@@ -306,6 +309,11 @@ div.filter--active{
     background: #000;
     color:#fff;
 }
+
+
+.filter__button_reset{
+    margin-left: auto;
+}
 @media (min-width: ($breakpoint-lg+1px)) {
     
 }
@@ -316,9 +324,15 @@ div.filter--active{
 
 }
 @media (max-width: $breakpoint-sm) {
-
+    .filter__button{
+        font-size: 14px;
+    }
+    .filter__button_reset{
+        margin-left: 0;
+    }
 }
 @media (max-width: $breakpoint-xsm) {
+    
     .filter__mobile_toggle{
         display: flex;
     }
@@ -355,7 +369,7 @@ div.filter--active{
         padding: 16px 0;
         height: max-content;
         position: initial;
-        
+        font-size: 16px;
         
     }
     .filter__mobile_button_set{

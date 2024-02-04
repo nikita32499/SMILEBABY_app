@@ -5,6 +5,9 @@ import style from "./style.module.scss"
 import { Link } from "react-router-dom"
 import { memo } from "react"
 
+import Loading from "../Loading/Loading"
+import ErrorElement from "../ErrorElement/ErrorElement"
+
 const SectionElement=({section,change})=>{
 
 
@@ -22,18 +25,11 @@ const SectionElement=({section,change})=>{
 
 export const SectionsList=memo(({change})=>{
 
-    let {data:sections_list,isFetching,isError}=SectionsApi.useGetAllSectionsQuery()
+    let {data:sections_list,isLoading,isError,error}=SectionsApi.useGetAllSectionsQuery()
 
 
     return(
-        (isFetching?
-        <div>
-            Идёт загрузка...
-        </div>:isError?
-        <div>
-            Произошла ошибка
-        </div>
-        :
+        isError?<ErrorElement error={error} message={"Не удалось получить список разделов"}/>:isLoading?"":
         <div className={style.sections}>
             <Link onClick={typeof change==="function"?change:""} to={`/shop/all?page=1`} className={style.sections__element+" "+style["sections__element--main"]}>
                 <img src={"/img/smilebaby_logo.svg"} className={style.sections__main_img} alt="" />
@@ -42,6 +38,6 @@ export const SectionsList=memo(({change})=>{
             {sections_list.map((section,index)=>(
                 <SectionElement key={index} change={change} section={section}/>
             ))}
-        </div>)
+        </div>
     )
 })

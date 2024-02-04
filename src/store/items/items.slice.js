@@ -17,6 +17,10 @@ export const initialState={
 }
 
 
+function isFilterDefault(filter){
+    return filter.sort==null && Object.keys(filter.price).length===0 && filter.size.length===0 &&filter.season.length===0
+}
+
 
 
 export const ItemsSlice = createSlice({
@@ -32,12 +36,13 @@ export const ItemsSlice = createSlice({
                 if(Number.isNaN(action.payload.price?.min)) action.payload.price.min=state.filter.price.min
                 if(Number.isNaN(action.payload.price?.max)) action.payload.price.max=state.filter.price.max
 
-
-                state.filter={
+                let filter = {
                     ...state.filter,
                     ...action.payload,
-                    modified:true
                 }
+                filter.modified=!isFilterDefault(filter)
+
+                state.filter=filter
             }
             
         },

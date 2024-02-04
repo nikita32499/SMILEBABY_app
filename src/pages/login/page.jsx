@@ -26,7 +26,7 @@ async function login({login,password}){
 }
 
 
-export const Login=()=>{
+const Login=()=>{
 
     let [state,setState]=useState({})
 
@@ -67,3 +67,4 @@ export const Login=()=>{
         </div>
     )
 }
+export default Login

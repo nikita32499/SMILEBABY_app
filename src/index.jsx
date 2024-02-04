@@ -1,4 +1,3 @@
-import {lazy} from 'react';
 import ReactDOM from 'react-dom/client';
 import './globals.scss';
 import { BrowserRouter,Navigate,Route,Routes} from 'react-router-dom';
@@ -7,17 +6,17 @@ import { store } from './store/store';
 
 
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary"
-import { ErrorElement } from './components/ErrorElement/ErrorElement';
+import  ErrorElement  from './components/ErrorElement/ErrorElement';
 
-import {Home} from "./pages/page"
-import {Layout} from './pages/layout';
-import { AdminRouter } from './pages/panel/admin/router';
-import { Shop } from './pages/shop/page';
-import {Login} from "./pages/login/page"
-import { Product } from './pages/product/page';
-import { Cart } from './pages/cart/page';
-import { Checkout } from './pages/cart/checkout/page';
-import { NotFound } from './components/NotFount/NotFound';
+import Home from "./pages/page"
+import Layout from './pages/layout';
+import  AdminRouter  from './pages/panel/admin/router';
+import  Shop  from './pages/shop/page';
+import Login from "./pages/login/page"
+import  Product  from './pages/product/page';
+import  Cart  from './pages/cart/page';
+import  Checkout  from './pages/cart/checkout/page';
+import  NotFound  from './components/NotFount/NotFound';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

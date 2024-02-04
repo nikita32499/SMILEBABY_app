@@ -9,6 +9,9 @@ import { Link } from "react-router-dom"
 import * as text_util from "../../utils/text.utils"
 
 
+import ErrorElement from "../../components/ErrorElement/ErrorElement"
+import Loading from "../../components/Loading/Loading"
+
 const Context = createContext()
 
 
@@ -114,7 +117,7 @@ const PriceBox=()=>{
 }
 
 
-export const Cart=()=>{
+const Cart=()=>{
 
     let [state,setState]=useState({
         select:[]
@@ -127,18 +130,16 @@ export const Cart=()=>{
     
 
     return(
+        isError?<ErrorElement error={error} message={"Корзина не открылась"}/>:isLoading?<Loading/>:
         <Context.Provider value={{state,setState,items_list,cart_list}}>
-            {isLoading?<div>
-                Загрузка...
-            </div>:isError?<div>
-                {console.error(error)}
-                Ошибка
-            </div>:<div className={style.cart}>
+            <div className={style.cart}>
                 <CartList/>
                 <PriceBox/>
                 {!cart_list.length?<p className={style.cart__emptycart}>У вас пустая корзина</p>:""}
-            </div>}
+            </div>
         </Context.Provider>
         
     )
 }
+
+export default Cart

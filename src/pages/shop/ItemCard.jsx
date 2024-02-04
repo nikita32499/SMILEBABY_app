@@ -15,10 +15,10 @@ const Slider=({item})=>{
 
     let img_arr = [item.img_main,...item.img_prev || []]
 
-    let img_number = state.action.img_number
+    let img_number = Math.max(0,state.action.img_number)
     let isTarget = state.action.type==="hover" && state.action.id===item.id
     
-    let img = isTarget && "img_number" in state.action?img_arr[img_number]:img_arr[0]
+    let img = isTarget && img_number in img_arr?img_arr[img_number]:img_arr[0]
 
     return(
         <div className={style.itemcard__slider} onMouseMove={(event)=>{
@@ -71,7 +71,7 @@ export const ItemCard=({item})=>{
 
    
     return(
-        <div className={style.itemcard__fixed}>
+        <div className={style.itemcard__fixed} style={item.shadow?{opacity:"0",pointerEvents:"none"}:{}}>
             <Link  to={`/product/${item.id}`} className={style.itemcard}>
                 <Slider item={item}/>
                 <div className={style.itemcard__pricebox}>
